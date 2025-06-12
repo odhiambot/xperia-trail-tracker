@@ -1,6 +1,5 @@
-
 import { Card, CardContent } from '@/components/ui/card';
-import { Mountain, Compass, Hiking } from 'lucide-react';
+import { Mountain, Compass, TreePine } from 'lucide-react';
 
 const categories = [
   {
@@ -16,7 +15,7 @@ const categories = [
     image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
   },
   {
-    icon: Hiking,
+    icon: TreePine,
     title: 'Forest Trekking',
     description: 'Journey through ancient forests and connect with nature on immersive woodland adventures.',
     image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
