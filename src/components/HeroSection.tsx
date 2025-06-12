@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
 
@@ -12,7 +13,7 @@ const HeroSection = () => {
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 hero-overlay"></div>
+      <div className="absolute inset-0 bg-black/60"></div>
       
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
@@ -24,11 +25,11 @@ const HeroSection = () => {
           your next unforgettable trail adventure awaits.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-          <Button size="lg" className="gradient-sunset text-white hover:opacity-90 transition-opacity px-8 py-4 text-lg font-semibold">
-            View Adventures
+          <Button asChild size="lg" className="gradient-sunset text-white hover:opacity-90 transition-opacity px-8 py-4 text-lg font-semibold">
+            <Link to="/adventures">View Adventures</Link>
           </Button>
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold">
-            Explore Trails
+          <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-semibold">
+            <Link to="/trails">Explore Trails</Link>
           </Button>
         </div>
       </div>

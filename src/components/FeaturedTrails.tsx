@@ -1,8 +1,9 @@
 
+import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Mountain, ArrowUp, Circle } from 'lucide-react';
+import { ArrowUp, Circle } from 'lucide-react';
 
 const trails = [
   {
@@ -49,13 +50,13 @@ const trails = [
 
 const FeaturedTrails = () => {
   return (
-    <section id="trails" className="py-20 bg-background">
+    <section id="trails" className="py-20 bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Featured Trails
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Discover our most popular hiking trails, each offering unique challenges and unforgettable experiences.
           </p>
         </div>
@@ -64,7 +65,7 @@ const FeaturedTrails = () => {
           {trails.map((trail, index) => (
             <Card 
               key={index} 
-              className="group hover-scale cursor-pointer overflow-hidden bg-card border-border animate-fade-in"
+              className="group hover-scale cursor-pointer overflow-hidden bg-gray-800 border-gray-700 animate-fade-in hover:bg-gray-750 transition-colors"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative h-48 overflow-hidden">
@@ -78,20 +79,20 @@ const FeaturedTrails = () => {
                     {trail.difficulty}
                   </Badge>
                 </div>
-                <div className="absolute bottom-4 right-4 bg-white/90 px-2 py-1 rounded text-sm font-bold text-foreground">
+                <div className="absolute bottom-4 right-4 bg-white/90 px-2 py-1 rounded text-sm font-bold text-gray-900">
                   {trail.price}
                 </div>
               </div>
               
               <CardContent className="p-4">
-                <h3 className="text-lg font-bold text-foreground mb-2">
+                <h3 className="text-lg font-bold text-white mb-2">
                   {trail.name}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                <p className="text-sm text-gray-400 mb-4 line-clamp-2">
                   {trail.description}
                 </p>
                 
-                <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
                   <div className="flex items-center gap-1">
                     <Circle className="h-3 w-3" />
                     {trail.duration}
@@ -102,8 +103,8 @@ const FeaturedTrails = () => {
                   </div>
                 </div>
 
-                <Button className="w-full gradient-sunset text-white hover:opacity-90 transition-opacity">
-                  Book Now
+                <Button asChild className="w-full gradient-sunset text-white hover:opacity-90 transition-opacity">
+                  <Link to="/adventures">Book Now</Link>
                 </Button>
               </CardContent>
             </Card>
