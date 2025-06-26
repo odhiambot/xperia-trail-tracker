@@ -1,10 +1,13 @@
-
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, Heart, Star, Eye } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
+import { useCart } from '@/hooks/useCart';
+import { useWishlist } from '@/hooks/useWishlist';
+import { AuthModal } from './AuthModal';
 
 const gearItems = [
   {
@@ -82,10 +85,12 @@ const gearItems = [
 ];
 
 const GearEssentials = () => {
-  const [favorites, setFavorites] = useState<number[]>([]);
-  const [cart, setCart] = useState<number[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const { toast } = useToast();
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+  const { user } = useAuth();
+  const { addToCart } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
 
   const categories = ['All', 'Footwear', 'Bags', 'Accessories', 'Equipment', 'Hydration', 'Sleep System'];
 
@@ -93,34 +98,35 @@ const GearEssentials = () => {
     ? gearItems 
     : gearItems.filter(item => item.category === selectedCategory);
 
-  const toggleFavorite = (itemId: number) => {
-    setFavorites(prev => 
-      prev.includes(itemId) 
-        ? prev.filter(id => id !== itemId)
-        : [...prev, itemId]
-    );
-    
-    const action = favorites.includes(itemId) ? 'removed from' : 'added to';
-    toast({
-      title: `Item ${action} favorites!`,
-      description: "Check your favorites in your profile.",
-    });
-  };
-
-  const addToCart = (item: any) => {
-    if (!item.inStock) {
-      toast({
-        title: "Out of Stock",
-        description: "This item is currently unavailable.",
-        variant: "destructive"
-      });
+  const handleAddToCart = (item: any) => {
+    if (!user) {
+      setAuthMode('signin');
+      setAuthModalOpen(true);
       return;
     }
 
-    setCart(prev => [...prev, item.id]);
-    toast({
-      title: "Added to cart!",
-      description: `${item.name} has been added to your cart.`,
+    if (!item.inStock) return;
+
+    addToCart({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image
+    });
+  };
+
+  const handleToggleWishlist = (item: any) => {
+    if (!user) {
+      setAuthMode('signin');
+      setAuthModalOpen(true);
+      return;
+    }
+
+    toggleWishlist({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image
     });
   };
 
@@ -129,148 +135,157 @@ const GearEssentials = () => {
   };
 
   return (
-    <section id="gear" className="py-20 bg-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Adventure Essentials
-          </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-            Gear up with our curated collection of premium outdoor equipment designed for serious adventurers.
-          </p>
-          
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedCategory(category)}
-                className={selectedCategory === category 
-                  ? "gradient-sunset text-white" 
-                  : "border-gray-600 text-gray-300 hover:bg-gray-700"
-                }
+    <>
+      <section id="gear" className="py-20 bg-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Adventure Essentials
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+              Gear up with our curated collection of premium outdoor equipment designed for serious adventurers.
+            </p>
+            
+            {/* Category Filter */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category)}
+                  className={selectedCategory === category 
+                    ? "gradient-sunset text-white" 
+                    : "border-gray-600 text-gray-300 hover:bg-gray-700"
+                  }
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {filteredItems.map((item, index) => (
+              <Card 
+                key={item.id} 
+                className="group hover-scale cursor-pointer overflow-hidden bg-gray-900 border-gray-700 animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {category}
-              </Button>
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  
+                  {/* Discount Badge */}
+                  {item.originalPrice > item.price && (
+                    <Badge className="absolute top-4 left-4 bg-red-500 text-white">
+                      -{getDiscountPercentage(item.originalPrice, item.price)}%
+                    </Badge>
+                  )}
+                  
+                  {/* Stock Status */}
+                  {!item.inStock && (
+                    <Badge className="absolute top-4 right-4 bg-gray-600 text-white">
+                      Out of Stock
+                    </Badge>
+                  )}
+                  
+                  {/* Favorite Button */}
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="absolute top-4 right-4 bg-black/50 text-white hover:bg-black/70"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleToggleWishlist(item);
+                    }}
+                  >
+                    <Heart 
+                      className={`h-4 w-4 ${isInWishlist(item.id) ? 'fill-red-500 text-red-500' : ''}`} 
+                    />
+                  </Button>
+
+                  {/* Quick View */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <Button size="sm" variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+                      <Eye className="h-4 w-4 mr-2" />
+                      Quick View
+                    </Button>
+                  </div>
+                </div>
+                
+                <CardContent className="p-6">
+                  <div className="text-sm text-orange-400 font-medium mb-2">
+                    {item.category}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {item.name}
+                  </h3>
+                  
+                  {/* Rating */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center">
+                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <span className="text-sm text-gray-300 ml-1">{item.rating}</span>
+                    </div>
+                    <span className="text-sm text-gray-400">({item.reviews} reviews)</span>
+                  </div>
+
+                  {/* Features */}
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {item.features.map((feature, idx) => (
+                      <Badge key={idx} variant="outline" className="text-xs border-gray-600 text-gray-300">
+                        {feature}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-col">
+                      <span className="text-2xl font-bold text-white">
+                        ${item.price}
+                      </span>
+                      {item.originalPrice > item.price && (
+                        <span className="text-sm text-gray-400 line-through">
+                          ${item.originalPrice}
+                        </span>
+                      )}
+                    </div>
+                    <Button 
+                      onClick={() => handleAddToCart(item)}
+                      disabled={!item.inStock}
+                      className={item.inStock 
+                        ? "gradient-sunset text-white hover:opacity-90 transition-opacity" 
+                        : "bg-gray-600 text-gray-400 cursor-not-allowed"
+                      }
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      {item.inStock ? 'Add to Cart' : 'Out of Stock'}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
+
+          <div className="text-center">
+            <Button asChild size="lg" variant="outline" className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white">
+              <Link to="/gear">View All Gear</Link>
+            </Button>
+          </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {filteredItems.map((item, index) => (
-            <Card 
-              key={item.id} 
-              className="group hover-scale cursor-pointer overflow-hidden bg-gray-900 border-gray-700 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={item.image} 
-                  alt={item.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                
-                {/* Discount Badge */}
-                {item.originalPrice > item.price && (
-                  <Badge className="absolute top-4 left-4 bg-red-500 text-white">
-                    -{getDiscountPercentage(item.originalPrice, item.price)}%
-                  </Badge>
-                )}
-                
-                {/* Stock Status */}
-                {!item.inStock && (
-                  <Badge className="absolute top-4 right-4 bg-gray-600 text-white">
-                    Out of Stock
-                  </Badge>
-                )}
-                
-                {/* Favorite Button */}
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="absolute top-4 right-4 bg-black/50 text-white hover:bg-black/70"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleFavorite(item.id);
-                  }}
-                >
-                  <Heart 
-                    className={`h-4 w-4 ${favorites.includes(item.id) ? 'fill-red-500 text-red-500' : ''}`} 
-                  />
-                </Button>
-
-                {/* Quick View */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <Button size="sm" variant="outline" className="text-white border-white hover:bg-white hover:text-black">
-                    <Eye className="h-4 w-4 mr-2" />
-                    Quick View
-                  </Button>
-                </div>
-              </div>
-              
-              <CardContent className="p-6">
-                <div className="text-sm text-orange-400 font-medium mb-2">
-                  {item.category}
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">
-                  {item.name}
-                </h3>
-                
-                {/* Rating */}
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="flex items-center">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span className="text-sm text-gray-300 ml-1">{item.rating}</span>
-                  </div>
-                  <span className="text-sm text-gray-400">({item.reviews} reviews)</span>
-                </div>
-
-                {/* Features */}
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {item.features.map((feature, idx) => (
-                    <Badge key={idx} variant="outline" className="text-xs border-gray-600 text-gray-300">
-                      {feature}
-                    </Badge>
-                  ))}
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <span className="text-2xl font-bold text-white">
-                      ${item.price}
-                    </span>
-                    {item.originalPrice > item.price && (
-                      <span className="text-sm text-gray-400 line-through">
-                        ${item.originalPrice}
-                      </span>
-                    )}
-                  </div>
-                  <Button 
-                    onClick={() => addToCart(item)}
-                    disabled={!item.inStock}
-                    className={item.inStock 
-                      ? "gradient-sunset text-white hover:opacity-90 transition-opacity" 
-                      : "bg-gray-600 text-gray-400 cursor-not-allowed"
-                    }
-                  >
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    {item.inStock ? 'Add to Cart' : 'Out of Stock'}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <Button size="lg" variant="outline" className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white">
-            View All Gear
-          </Button>
-        </div>
-      </div>
-    </section>
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        mode={authMode}
+        onModeChange={setAuthMode}
+      />
+    </>
   );
 };
 

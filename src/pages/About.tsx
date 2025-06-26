@@ -2,14 +2,8 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mountain, Users, Award, Globe } from 'lucide-react';
-
-const stats = [
-  { icon: Mountain, label: "Trails Mapped", value: "500+" },
-  { icon: Users, label: "Happy Hikers", value: "10K+" },
-  { icon: Award, label: "Years Experience", value: "15+" },
-  { icon: Globe, label: "Countries", value: "25+" }
-];
+import { Badge } from '@/components/ui/badge';
+import { Mountain, Users, Award, Camera } from 'lucide-react';
 
 const About = () => {
   return (
@@ -17,82 +11,197 @@ const About = () => {
       <Header />
       <div className="pt-20 pb-12">
         <div className="container mx-auto px-4">
+          {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold text-white mb-4">About Xperia Adventure</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We're passionate about connecting people with nature through unforgettable hiking experiences. 
-              Our mission is to make the great outdoors accessible to everyone, regardless of skill level.
+              We're passionate about creating unforgettable outdoor experiences that connect you with nature 
+              and challenge your limits. Since 2015, we've been guiding adventurers through some of the most 
+              spectacular landscapes on earth.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {stats.map((stat, index) => (
-              <Card key={index} className="bg-gray-800 border-gray-700 text-center">
-                <CardContent className="p-6">
-                  <stat.icon className="h-12 w-12 text-orange-400 mx-auto mb-4" />
-                  <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-gray-400">{stat.label}</div>
-                </CardContent>
-              </Card>
-            ))}
+          {/* Images Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <div className="relative h-64 overflow-hidden rounded-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1464822759844-d150baec3ce5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Mountain sunrise hike"
+                className="w-full h-full object-cover"
+              />
+              <Badge className="absolute bottom-4 left-4 bg-orange-500 text-white">
+                Sunrise Adventures
+              </Badge>
+            </div>
+            
+            <div className="relative h-64 overflow-hidden rounded-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Group of hikers"
+                className="w-full h-full object-cover"
+              />
+              <Badge className="absolute bottom-4 left-4 bg-green-500 text-white">
+                Team Building
+              </Badge>
+            </div>
+            
+            <div className="relative h-64 overflow-hidden rounded-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Adventure equipment"
+                className="w-full h-full object-cover"
+              />
+              <Badge className="absolute bottom-4 left-4 bg-blue-500 text-white">
+                Premium Gear
+              </Badge>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Stats Section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <Card className="bg-gray-800 border-gray-700 text-center">
+              <CardContent className="p-8">
+                <Mountain className="h-12 w-12 text-orange-400 mx-auto mb-4" />
+                <h3 className="text-3xl font-bold text-white mb-2">500+</h3>
+                <p className="text-gray-300">Adventures Completed</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gray-800 border-gray-700 text-center">
+              <CardContent className="p-8">
+                <Users className="h-12 w-12 text-orange-400 mx-auto mb-4" />
+                <h3 className="text-3xl font-bold text-white mb-2">2,500+</h3>
+                <p className="text-gray-300">Happy Adventurers</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gray-800 border-gray-700 text-center">
+              <CardContent className="p-8">
+                <Award className="h-12 w-12 text-orange-400 mx-auto mb-4" />
+                <h3 className="text-3xl font-bold text-white mb-2">15+</h3>
+                <p className="text-gray-300">Awards Won</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Story Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             <div>
               <h2 className="text-3xl font-bold text-white mb-6">Our Story</h2>
               <p className="text-gray-300 mb-4">
-                Founded in 2009 by a group of passionate hikers, Xperia Adventure began as a small 
-                local guiding service. Our founders believed that everyone should have the opportunity 
-                to experience the transformative power of nature.
+                Xperia Adventure was born from a simple belief: that everyone should have the opportunity 
+                to experience the transformative power of nature. Founded by a group of experienced mountaineers 
+                and outdoor enthusiasts, we started with just a handful of local hiking tours.
               </p>
               <p className="text-gray-300 mb-4">
-                Over the years, we've grown from organizing weekend trips for friends to becoming 
-                a trusted adventure company serving thousands of outdoor enthusiasts worldwide.
+                Today, we offer comprehensive adventure packages that cater to all skill levels, from beginner-friendly 
+                nature walks to challenging multi-day expeditions. Our certified guides are not just experts in 
+                outdoor safety and navigation—they're passionate storytellers who bring each landscape to life.
               </p>
               <p className="text-gray-300">
-                Today, we continue to uphold our founding principles: safety first, respect for 
-                nature, and creating memories that last a lifetime.
+                We believe that adventure should be accessible, safe, and environmentally responsible. 
+                That's why we partner with local communities, support conservation efforts, and maintain 
+                the highest safety standards in everything we do.
               </p>
             </div>
-            <div className="relative h-96 rounded-lg overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                alt="Mountain landscape"
-                className="w-full h-full object-cover"
-              />
+            
+            <div className="space-y-6">
+              <div className="relative h-48 overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Adventure team planning"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              <div className="relative h-48 overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1510312305653-8ed496efaaa8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Hikers on mountain trail"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
 
-          <div className="mt-16">
-            <h2 className="text-3xl font-bold text-white text-center mb-8">Our Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Values Section */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-white text-center mb-12">Our Values</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card className="bg-gray-800 border-gray-700">
                 <CardContent className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-white mb-4">Safety First</h3>
-                  <p className="text-gray-300">
-                    Every adventure is planned with safety as our top priority. Our certified guides 
-                    ensure you have a secure and enjoyable experience.
+                  <Mountain className="h-8 w-8 text-orange-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">Safety First</h3>
+                  <p className="text-gray-300 text-sm">
+                    Your safety is our top priority. All our guides are certified and experienced.
                   </p>
                 </CardContent>
               </Card>
+              
               <Card className="bg-gray-800 border-gray-700">
                 <CardContent className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-white mb-4">Respect Nature</h3>
-                  <p className="text-gray-300">
-                    We follow Leave No Trace principles and educate our participants about 
-                    environmental conservation and sustainable hiking practices.
+                  <Users className="h-8 w-8 text-orange-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">Community</h3>
+                  <p className="text-gray-300 text-sm">
+                    We support local communities and create lasting connections.
                   </p>
                 </CardContent>
               </Card>
+              
               <Card className="bg-gray-800 border-gray-700">
                 <CardContent className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-white mb-4">Inclusive Adventure</h3>
-                  <p className="text-gray-300">
-                    We believe adventure is for everyone. Our trips cater to all skill levels 
-                    and we work to make hiking accessible to diverse communities.
+                  <Camera className="h-8 w-8 text-orange-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">Conservation</h3>
+                  <p className="text-gray-300 text-sm">
+                    We're committed to preserving the natural beauty we explore.
                   </p>
                 </CardContent>
               </Card>
+              
+              <Card className="bg-gray-800 border-gray-700">
+                <CardContent className="p-6 text-center">
+                  <Award className="h-8 w-8 text-orange-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">Excellence</h3>
+                  <p className="text-gray-300 text-sm">
+                    We strive for excellence in every adventure we create.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Gallery Section */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-white text-center mb-12">Adventure Gallery</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="relative h-32 overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  alt="Mountain peak view"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              <div className="relative h-32 overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  alt="Forest trail"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              <div className="relative h-32 overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  alt="Rock climbing"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              <div className="relative h-32 overflow-hidden rounded-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  alt="Group celebration"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                />
+              </div>
             </div>
           </div>
         </div>
