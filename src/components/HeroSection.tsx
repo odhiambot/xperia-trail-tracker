@@ -9,7 +9,7 @@ const HeroSection = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2574&q=80')`
+        backgroundImage: `url(public/images/heroSection.jpeg)`
       }}
     >
       {/* Overlay */}

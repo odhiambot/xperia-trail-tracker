@@ -44,12 +44,12 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
-              <div className="p-2 bg-orange-500 rounded-lg">
+              <div className="p-2 bg--500 rounded-lg">
                 <Mountain className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-bold text-white">Xperia Adventure</span>
@@ -65,12 +65,12 @@ const Header = () => {
               >
                 Home
               </Link>
-              <button 
+              {/* <button 
                 onClick={() => scrollToSection('adventures')}
                 className="text-white hover:text-orange-400 transition-colors font-medium"
               >
                 Adventures
-              </button>
+              </button> */}
               <button 
                 onClick={() => scrollToSection('trails')}
                 className="text-white hover:text-orange-400 transition-colors font-medium"

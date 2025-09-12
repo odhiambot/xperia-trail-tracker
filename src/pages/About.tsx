@@ -14,10 +14,8 @@ const About = () => {
           {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold text-white mb-4">About Xperia Adventure</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We're passionate about creating unforgettable outdoor experiences that connect you with nature 
-              and challenge your limits. Since 2015, we've been guiding adventurers through some of the most 
-              spectacular landscapes on earth.
+            <p className="text-xl text-justify text-gray-300 max-w-3xl mx-auto">
+            "Our hiking adventure app is designed for explorers who crave the thrill of the outdoors. Whether you’re a beginner looking for safe, scenic trails or an experienced hiker chasing new peaks, we’ve got you covered. Discover hidden gems, track your progress, connect with fellow adventurers, and turn every hike into an unforgettable story. Adventure starts here — one trail at a time.
             </p>
           </div>
 
@@ -25,7 +23,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             <div className="relative h-64 overflow-hidden rounded-lg">
               <img 
-                src="https://images.unsplash.com/photo-1464822759844-d150baec3ce5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="public/images/mountainsunrise.jpeg" 
                 alt="Mountain sunrise hike"
                 className="w-full h-full object-cover"
               />
@@ -36,7 +34,7 @@ const About = () => {
             
             <div className="relative h-64 overflow-hidden rounded-lg">
               <img 
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="public\images\teambuilding.jpeg" 
                 alt="Group of hikers"
                 className="w-full h-full object-cover"
               />
@@ -47,12 +45,12 @@ const About = () => {
             
             <div className="relative h-64 overflow-hidden rounded-lg">
               <img 
-                src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="public\images\waterfall.jpeg" 
                 alt="Adventure equipment"
                 className="w-full h-full object-cover"
               />
               <Badge className="absolute bottom-4 left-4 bg-blue-500 text-white">
-                Premium Gear
+                WaterFall Trails
               </Badge>
             </div>
           </div>
@@ -62,7 +60,7 @@ const About = () => {
             <Card className="bg-gray-800 border-gray-700 text-center">
               <CardContent className="p-8">
                 <Mountain className="h-12 w-12 text-orange-400 mx-auto mb-4" />
-                <h3 className="text-3xl font-bold text-white mb-2">500+</h3>
+                <h3 className="text-3xl font-bold text-white mb-2">10+</h3>
                 <p className="text-gray-300">Adventures Completed</p>
               </CardContent>
             </Card>
@@ -70,7 +68,7 @@ const About = () => {
             <Card className="bg-gray-800 border-gray-700 text-center">
               <CardContent className="p-8">
                 <Users className="h-12 w-12 text-orange-400 mx-auto mb-4" />
-                <h3 className="text-3xl font-bold text-white mb-2">2,500+</h3>
+                <h3 className="text-3xl font-bold text-white mb-2">200+</h3>
                 <p className="text-gray-300">Happy Adventurers</p>
               </CardContent>
             </Card>
@@ -78,8 +76,8 @@ const About = () => {
             <Card className="bg-gray-800 border-gray-700 text-center">
               <CardContent className="p-8">
                 <Award className="h-12 w-12 text-orange-400 mx-auto mb-4" />
-                <h3 className="text-3xl font-bold text-white mb-2">15+</h3>
-                <p className="text-gray-300">Awards Won</p>
+                <h3 className="text-3xl font-bold text-white mb-2">++++</h3>
+                <p className="text-gray-300">remaining Adventures</p>
               </CardContent>
             </Card>
           </div>
@@ -114,9 +112,9 @@ const About = () => {
                 />
               </div>
               
-              <div className="relative h-48 overflow-hidden rounded-lg">
+              <div className="relative h-48  rounded-lg">
                 <img 
-                  src="https://images.unsplash.com/photo-1510312305653-8ed496efaaa8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src="https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Hikers on mountain trail"
                   className="w-full h-full object-cover"
                 />
@@ -174,9 +172,9 @@ const About = () => {
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-white text-center mb-12">Adventure Gallery</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="relative h-32 overflow-hidden rounded-lg">
+              <div className="relative h-40 overflow-hidden rounded-lg">
                 <img 
-                  src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  src="public\images\photo1.jpg" 
                   alt="Mountain peak view"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                 />
