@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { supabase } from '@/integrations/supabase/client';
+// import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
 interface AuthModalProps {
@@ -26,54 +26,54 @@ export const AuthModal = ({ isOpen, onClose, mode, onModeChange }: AuthModalProp
     e.preventDefault();
     setLoading(true);
 
-    try {
-      if (mode === 'signup') {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              first_name: firstName,
-              last_name: lastName,
-            }
-          }
-        });
+    // try {
+    //   if (mode === 'signup') {
+    //     const { error } = await supabase.auth.signUp({
+    //       email,
+    //       password,
+    //       options: {
+    //         data: {
+    //           first_name: firstName,
+    //           last_name: lastName,
+    //         }
+    //       }
+    //     });
 
-        if (error) throw error;
+    //     if (error) throw error;
 
-        toast({
-          title: "Account created!",
-          description: "Please check your email to verify your account.",
-        });
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+    //     toast({
+    //       title: "Account created!",
+    //       description: "Please check your email to verify your account.",
+    //     });
+    //   } else {
+    //     const { error } = await supabase.auth.signInWithPassword({
+    //       email,
+    //       password,
+    //     });
 
-        if (error) throw error;
+    //     if (error) throw error;
 
-        toast({
-          title: "Welcome back!",
-          description: "You have successfully signed in.",
-        });
-      }
+    //     toast({
+    //       title: "Welcome back!",
+    //       description: "You have successfully signed in.",
+    //     });
+    //   }
 
-      onClose();
-      setEmail('');
-      setPassword('');
-      setFirstName('');
-      setLastName('');
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive"
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     onClose();
+  //     setEmail('');
+  //     setPassword('');
+  //     setFirstName('');
+  //     setLastName('');
+  //   } catch (error: any) {
+  //     toast({
+  //       title: "Error",
+  //       description: error.message,
+  //       variant: "destructive"
+  //     });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -155,4 +155,4 @@ export const AuthModal = ({ isOpen, onClose, mode, onModeChange }: AuthModalProp
       </DialogContent>
     </Dialog>
   );
-};
+}}

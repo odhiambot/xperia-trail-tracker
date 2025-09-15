@@ -9,7 +9,7 @@ import { Calendar, Users, MapPin, Clock, Star, Phone, Mail } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { AuthModal } from './AuthModal';
-import { supabase } from '@/integrations/supabase/client';
+// import { supabase } from '@/integrations/supabase/client';
 
 const adventures = [
   {
@@ -162,18 +162,18 @@ const BookingSection = ({ preselectedAdventure }: BookingSectionProps) => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
-        .from('bookings')
-        .insert({
-          user_id: user.id,
-          adventure_name: selectedAdventure.name,
-          adventure_type: formData.adventure,
-          participants: parseInt(formData.guests),
-          booking_date: formData.date,
-          total_amount: calculateTotal()
-        });
+      // const { error } = await supabase
+      //   .from('bookings')
+      //   .insert({
+      //     user_id: user.id,
+      //     adventure_name: selectedAdventure.name,
+      //     adventure_type: formData.adventure,
+      //     participants: parseInt(formData.guests),
+      //     booking_date: formData.date,
+      //     total_amount: calculateTotal()
+      //   });
 
-      if (error) throw error;
+      // if (error) throw error;
 
       toast({
         title: "Booking request submitted successfully! 🎉",
@@ -523,12 +523,12 @@ const BookingSection = ({ preselectedAdventure }: BookingSectionProps) => {
         </div>
       </section>
 
-      <AuthModal
+      {/* <AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         mode={authMode}
         onModeChange={setAuthMode}
-      />
+      /> */}
     </>
   );
 };

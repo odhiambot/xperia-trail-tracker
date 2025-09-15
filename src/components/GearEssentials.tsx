@@ -246,11 +246,11 @@ const GearEssentials = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col">
                       <span className="text-2xl font-bold text-white">
-                        ${item.price}
+                        KES {item.price}
                       </span>
                       {item.originalPrice > item.price && (
                         <span className="text-sm text-gray-400 line-through">
-                          ${item.originalPrice}
+                          KES {item.originalPrice}
                         </span>
                       )}
                     </div>
@@ -279,12 +279,12 @@ const GearEssentials = () => {
         </div>
       </section>
 
-      <AuthModal
+      {/* <AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         mode={authMode}
         onModeChange={setAuthMode}
-      />
+      /> */}
     </>
   );
 };

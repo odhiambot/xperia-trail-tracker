@@ -269,12 +269,12 @@ const Header = () => {
         </div>
       </header>
 
-      <AuthModal
+      {/* <AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         mode={authMode}
         onModeChange={setAuthMode}
-      />
+      /> */}
 
       <CartModal
         isOpen={cartModalOpen}

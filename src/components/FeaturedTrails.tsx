@@ -12,7 +12,7 @@ const trails = [
     difficulty: 'Moderate',
     duration: '4-6 hours',
     elevation: '1,200m',
-    price: '$89',
+    price: 'KES 4000',
     image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
     description: 'Experience magical sunrise views from this spectacular mountain summit.',
     difficultyColor: 'bg-yellow-500'
@@ -23,7 +23,7 @@ const trails = [
     difficulty: 'Easy',
     duration: '2-3 hours',
     elevation: '300m',
-    price: '$49',
+    price: 'KES 3000',
     image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
     description: 'Perfect for beginners, this enchanting forest trail offers tranquil beauty.',
     difficultyColor: 'bg-green-500'
@@ -34,7 +34,7 @@ const trails = [
     difficulty: 'Hard',
     duration: '8-10 hours',
     elevation: '2,100m',
-    price: '$149',
+    price: 'KES 4000',
     image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
     description: 'An epic adventure for experienced hikers seeking ultimate challenges.',
     difficultyColor: 'bg-red-500'
@@ -45,7 +45,7 @@ const trails = [
     difficulty: 'Easy',
     duration: '3-4 hours',
     elevation: '150m',
-    price: '$39',
+    price: 'KES 3000',
     image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
     description: 'Follow pristine streams through lush valleys on this gentle trail.',
     difficultyColor: 'bg-green-500'
