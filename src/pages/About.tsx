@@ -23,7 +23,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             <div className="relative h-64 overflow-hidden rounded-lg">
               <img 
-                src="public/images/mountainsunrise.jpeg" 
+                src="/images/mountainsunrise.png" 
                 alt="Mountain sunrise hike"
                 className="w-full h-full object-cover"
               />
@@ -34,7 +34,7 @@ const About = () => {
             
             <div className="relative h-64 overflow-hidden rounded-lg">
               <img 
-                src="public\images\teambuilding.jpeg" 
+                src="\images\teambuilding.png" 
                 alt="Group of hikers"
                 className="w-full h-full object-cover"
               />
@@ -45,7 +45,7 @@ const About = () => {
             
             <div className="relative h-64 overflow-hidden rounded-lg">
               <img 
-                src="public\images\waterfall.jpeg" 
+                src="\images\waterfall.png" 
                 alt="Adventure equipment"
                 className="w-full h-full object-cover"
               />
@@ -174,7 +174,7 @@ const About = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="relative h-40 overflow-hidden rounded-lg">
                 <img 
-                  src="public\images\photo1.jpg" 
+                  src="\images\photo1.jpg" 
                   alt="Mountain peak view"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                 />
