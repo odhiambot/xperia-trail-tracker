@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Mountain, Users, Award, Camera } from 'lucide-react';
+import ExploreGallery from '@/components/gallery';
 
 const About = () => {
   return (
@@ -83,44 +84,43 @@ const About = () => {
           </div>
 
           {/* Story Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-6">Our Story</h2>
-              <p className="text-gray-300 mb-4">
-                Xperia Adventure was born from a simple belief: that everyone should have the opportunity 
-                to experience the transformative power of nature. Founded by a group of experienced mountaineers 
-                and outdoor enthusiasts, we started with just a handful of local hiking tours.
-              </p>
-              <p className="text-gray-300 mb-4">
-                Today, we offer comprehensive adventure packages that cater to all skill levels, from beginner-friendly 
-                nature walks to challenging multi-day expeditions. Our certified guides are not just experts in 
-                outdoor safety and navigation—they're passionate storytellers who bring each landscape to life.
-              </p>
-              <p className="text-gray-300">
-                We believe that adventure should be accessible, safe, and environmentally responsible. 
-                That's why we partner with local communities, support conservation efforts, and maintain 
-                the highest safety standards in everything we do.
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="relative h-48 overflow-hidden rounded-lg">
-                <img 
-                  src="https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Adventure team planning"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              <div className="relative h-48  rounded-lg">
-                <img 
-                  src="https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Hikers on mountain trail"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center  rounded-2xl shadow-lg overflow-hidden mb-16">
+  {/* Left Side (Image) */}
+  <div className="relative h-80 lg:h-full">
+    <img 
+      src="\images\story.png" 
+      alt="Adventure team planning"
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+  {/* Right Side (Text Content) */}
+  <div className="p-8 lg:p-12">
+    <h2 className="text-3xl font-bold text-white mb-4">
+      Our <span className="text-orange-500">Story</span>
+    </h2>
+    <p className="text-gray-600 mb-4">
+      Xperia Adventure was born from a simple belief: that everyone should have the opportunity 
+      to experience the transformative power of nature. Founded by a group of experienced mountaineers 
+      and outdoor enthusiasts, we started with just a handful of local hiking tours.
+    </p>
+    <p className="text-gray-600 mb-4">
+      Today, we offer comprehensive adventure packages that cater to all skill levels, from beginner-friendly 
+      nature walks to challenging multi-day expeditions. Our certified guides are not just experts in 
+      outdoor safety and navigation—they're passionate storytellers who bring each landscape to life.
+    </p>
+    <p className="text-gray-600 mb-6">
+      We believe that adventure should be accessible, safe, and environmentally responsible. 
+      That's why we partner with local communities, support conservation efforts, and maintain 
+      the highest safety standards in everything we do.
+    </p>
+
+    {/* <button className="px-6 py-3 bg-sky-500 text-white font-semibold rounded-full shadow hover:bg-sky-600 transition">
+      Learn More
+    </button> */}
+  </div>
+</div>
+
 
           {/* Values Section */}
           <div className="mb-16">
@@ -168,40 +168,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Gallery Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-white text-center mb-12">Adventure Gallery</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="relative h-40 overflow-hidden rounded-lg">
-                <img 
-                  src="\images\photo1.jpg" 
-                  alt="Mountain peak view"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <div className="relative h-32 overflow-hidden rounded-lg">
-                <img 
-                  src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                  alt="Forest trail"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <div className="relative h-32 overflow-hidden rounded-lg">
-                <img 
-                  src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                  alt="Rock climbing"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <div className="relative h-32 overflow-hidden rounded-lg">
-                <img 
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                  alt="Group celebration"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-            </div>
-          </div>
+         <ExploreGallery/>
         </div>
       </div>
       <Footer />

@@ -26,7 +26,7 @@ const HeroSection = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
           <Button asChild size="lg" className="gradient-sunset text-white hover:opacity-90 transition-opacity px-8 py-4 text-lg font-semibold">
-            <Link to="/adventures">View Adventures</Link>
+            <Link to="/booking">Book Adventure</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-semibold">
             <Link to="/trails">Explore Trails</Link>
