@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, Heart, Star, Eye } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
-import { useCart } from '@/hooks/useCart';
-import { useWishlist } from '@/hooks/useWishlist';
+// import { useCart } from '@/hooks/useCart';
+// import { useWishlist } from '@/hooks/useWishlist';
 import { AuthModal } from './AuthModal';
 
 const gearItems = [
@@ -88,9 +88,9 @@ const GearEssentials = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
-  const { user } = useAuth();
-  const { addToCart } = useCart();
-  const { toggleWishlist, isInWishlist } = useWishlist();
+  // const { user } = useAuth();
+  // const { addToCart } = useCart();
+  // const { toggleWishlist, isInWishlist } = useWishlist();
 
   const categories = ['All', 'Footwear', 'Bags', 'Accessories', 'Equipment', 'Hydration', 'Sleep System'];
 
@@ -98,37 +98,37 @@ const GearEssentials = () => {
     ? gearItems 
     : gearItems.filter(item => item.category === selectedCategory);
 
-  const handleAddToCart = (item: any) => {
-    if (!user) {
-      setAuthMode('signin');
-      setAuthModalOpen(true);
-      return;
-    }
+  // const handleAddToCart = (item: any) => {
+  //   if (!user) {
+  //     setAuthMode('signin');
+  //     setAuthModalOpen(true);
+  //     return;
+  //   }
 
-    if (!item.inStock) return;
+  //   if (!item.inStock) return;
 
-    addToCart({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      image: item.image
-    });
-  };
+  //   addToCart({
+  //     id: item.id,
+  //     name: item.name,
+  //     price: item.price,
+  //     image: item.image
+  //   });
+  // };
 
-  const handleToggleWishlist = (item: any) => {
-    if (!user) {
-      setAuthMode('signin');
-      setAuthModalOpen(true);
-      return;
-    }
+  // const handleToggleWishlist = (item: any) => {
+  //   if (!user) {
+  //     setAuthMode('signin');
+  //     setAuthModalOpen(true);
+  //     return;
+  //   }
 
-    toggleWishlist({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      image: item.image
-    });
-  };
+  //   toggleWishlist({
+  //     id: item.id,
+  //     name: item.name,
+  //     price: item.price,
+  //     image: item.image
+  //   });
+  // };
 
   const getDiscountPercentage = (original: number, current: number) => {
     return Math.round(((original - current) / original) * 100);
@@ -200,11 +200,11 @@ const GearEssentials = () => {
                     className="absolute top-4 right-4 bg-black/50 text-white hover:bg-black/70"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleToggleWishlist(item);
+                      // handleToggleWishlist(item);
                     }}
                   >
                     <Heart 
-                      className={`h-4 w-4 ${isInWishlist(item.id) ? 'fill-red-500 text-red-500' : ''}`} 
+                      // className={`h-4 w-4 ${isInWishlist(item.id) ? 'fill-red-500 text-red-500' : ''}`} 
                     />
                   </Button>
 
@@ -255,7 +255,7 @@ const GearEssentials = () => {
                       )}
                     </div>
                     <Button 
-                      onClick={() => handleAddToCart(item)}
+                      // onClick={() => handleAddToCart(item)}
                       disabled={!item.inStock}
                       className={item.inStock 
                         ? "gradient-sunset text-white hover:opacity-90 transition-opacity" 

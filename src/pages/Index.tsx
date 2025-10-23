@@ -4,7 +4,7 @@ import HeroSection from '@/components/HeroSection';
 import AdventureCategories from '@/components/AdventureCategories';
 import FeaturedTrails from '@/components/FeaturedTrails';
 import GearEssentials from '@/components/GearEssentials';
-import BookingSection from '@/components/BookingSection';
+// import BookingSection from '@/components/BookingSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -15,7 +15,7 @@ const Index = () => {
       {/* <AdventureCategories /> */}
       <FeaturedTrails />
       <GearEssentials />
-      <BookingSection />
+      {/* <BookingSection /> */}
       <Footer />
     </div>
   );

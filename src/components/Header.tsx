@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Mountain, Menu, X, ShoppingCart, User, LogOut, Heart } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
-import { useCart } from '@/hooks/useCart';
-import { useWishlist } from '@/hooks/useWishlist';
+// import { useCart } from '@/hooks/useCart';
+// import { useWishlist } from '@/hooks/useWishlist';
 import { AuthModal } from './AuthModal';
-import { CartModal } from './CartModal';
+// import { CartModal } from './CartModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,9 +16,9 @@ const Header = () => {
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
   const [cartModalOpen, setCartModalOpen] = useState(false);
   const location = useLocation();
-  const { user, signOut } = useAuth();
-  const { getTotalItems } = useCart();
-  const { wishlistItems } = useWishlist();
+  const { user, logout } = useAuth();
+  // const { getTotalItems } = useCart();
+  // const { wishlistItems } = useWishlist();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -65,12 +65,7 @@ const Header = () => {
               >
                 Home
               </Link>
-              {/* <button 
-                onClick={() => scrollToSection('adventures')}
-                className="text-white hover:text-orange-400 transition-colors font-medium"
-              >
-                Adventures
-              </button> */}
+              
               <button 
                 onClick={() => scrollToSection('trails')}
                 className="text-white hover:text-orange-400 transition-colors font-medium"
@@ -97,7 +92,7 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-4">
               {user ? (
                 <>
-                  <Button
+                  {/* <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setCartModalOpen(true)}
@@ -109,9 +104,9 @@ const Header = () => {
                         {getTotalItems()}
                       </Badge>
                     )}
-                  </Button>
+                  </Button> */}
                   
-                  <Button
+                  {/* <Button
                     variant="ghost"
                     size="icon"
                     className="text-white hover:text-orange-400 relative"
@@ -122,7 +117,7 @@ const Header = () => {
                         {wishlistItems.length}
                       </Badge>
                     )}
-                  </Button>
+                  </Button> */}
 
                   <Button asChild className="gradient-sunset text-white hover:opacity-90 transition-opacity">
                     <Link to="/booking">Book Adventure</Link>
@@ -130,7 +125,7 @@ const Header = () => {
 
                   <Button
                     variant="ghost"
-                    onClick={signOut}
+                    onClick={logout}
                     className="text-white hover:text-orange-400"
                   >
                     <LogOut className="h-4 w-4 mr-2" />
@@ -155,7 +150,7 @@ const Header = () => {
                     Book Adventure
                   </Button>
                 </>
-              )}
+               )} 
             </div>
 
             {/* Mobile Menu Button */}
@@ -210,7 +205,7 @@ const Header = () => {
                 
                 {user ? (
                   <>
-                    <Button
+                    {/* <Button
                       onClick={() => {
                         setCartModalOpen(true);
                         setIsMenuOpen(false);
@@ -220,7 +215,7 @@ const Header = () => {
                     >
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       Cart ({getTotalItems()})
-                    </Button>
+                    </Button> */}
                     
                     <Button asChild className="gradient-sunset text-white hover:opacity-90 transition-opacity w-full">
                       <Link to="/booking" onClick={() => setIsMenuOpen(false)}>Book Adventure</Link>
@@ -228,7 +223,7 @@ const Header = () => {
                     
                     <Button
                       onClick={() => {
-                        signOut();
+                        logout();
                         setIsMenuOpen(false);
                       }}
                       variant="outline"
@@ -262,24 +257,24 @@ const Header = () => {
                       Book Adventure
                     </Button>
                   </>
-                )}
+                )} 
               </div>
             </nav>
           )}
         </div>
       </header>
 
-      {/* <AuthModal
+      <AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         mode={authMode}
         onModeChange={setAuthMode}
-      /> */}
+      />
 
-      <CartModal
+      {/* <CartModal
         isOpen={cartModalOpen}
         onClose={() => setCartModalOpen(false)}
-      />
+      /> */}
     </>
   );
 };
