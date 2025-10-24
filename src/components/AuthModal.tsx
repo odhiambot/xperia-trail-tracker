@@ -69,19 +69,33 @@ export const AuthModal = ({ isOpen, onClose, mode, onModeChange }: AuthModalProp
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {mode === 'signup' && (
-            
+            <>
               <div className="space-y-2">
-                <Label htmlFor="firstName">Full Name</Label>
+                <Label htmlFor="fullName">Full Name</Label>
                 <Input
-                  id="firstName"
+                  id="fullName"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="bg-gray-700 border-gray-600"
                   required
                 />
               </div>
+                 <div className="space-y-2">
+      <Label htmlFor="phone">Phone Number</Label>
+      <Input
+        id="phone"
+        type="tel"
+        value={phone}
+        onChange={(e) => setPhoneNumber(e.target.value)}
+        className="bg-gray-700 border-gray-600"
+        required
+      />
+    </div>
+    </>
+              
              
           )}
+        
 
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
